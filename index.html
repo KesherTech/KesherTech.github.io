@@ -6,19 +6,19 @@
   <title>KesherTech — מגינים על האנשים שאתם אוהבים</title>
   <meta name="description" content="KesherTech builds simple tools that help everyone stay safe in a dangerous digital world." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a0f;
-      --surface: #13131a;
-      --border: #1e1e2e;
-      --accent: #6366f1;
-      --accent-hover: #4f52e0;
-      --text: #f0f0f5;
-      --muted: #8888a0;
-      --green: #22c55e;
+      --bg: #000000;
+      --surface: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.08);
+      --accent: #a78bfa;
+      --accent2: #60a5fa;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.45);
+      --muted2: rgba(255,255,255,0.25);
     }
 
     html { scroll-behavior: smooth; }
@@ -28,7 +28,30 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
+
+    /* DOT GRID BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(120,80,255,0.18) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    * { position: relative; z-index: 1; }
 
     /* NAV */
     nav {
@@ -38,29 +61,34 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 48px;
-      background: rgba(10,10,15,0.85);
-      backdrop-filter: blur(12px);
+      padding: 20px 48px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
 
     .logo {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--text);
       text-decoration: none;
       letter-spacing: -0.3px;
     }
 
-    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
 
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
+    .nav-cta {
+      background: white;
+      color: black !important;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 0.85rem !important;
+      transition: opacity 0.2s !important;
     }
-    nav a:hover { color: var(--text); }
+    .nav-cta:hover { opacity: 0.85 !important; color: black !important; }
 
     /* HERO */
     .hero {
@@ -70,63 +98,56 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 120px 24px 80px;
-      position: relative;
-      overflow: hidden;
+      padding: 140px 24px 100px;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -55%);
-      pointer-events: none;
-    }
-
-    .badge {
+    .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(99,102,241,0.12);
-      border: 1px solid rgba(99,102,241,0.3);
-      color: #a5b4fc;
-      font-size: 0.78rem;
-      font-weight: 500;
-      padding: 5px 14px;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      padding: 6px 16px;
       border-radius: 999px;
-      margin-bottom: 28px;
-      letter-spacing: 0.3px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      letter-spacing: 0.2px;
     }
+
+    .hero-badge span { color: var(--accent); font-weight: 500; }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -1.5px;
-      line-height: 1.1;
-      margin-bottom: 12px;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -2.5px;
+      line-height: 1.0;
+      margin-bottom: 8px;
+      background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.6) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .hero h1 .he {
+    .hero h1 .sub {
       display: block;
-      direction: rtl;
-    }
-
-    .hero h1 .en {
-      display: block;
-      color: var(--muted);
-      font-size: 0.55em;
-      font-weight: 500;
+      font-size: 0.42em;
+      font-weight: 400;
       letter-spacing: -0.5px;
-      margin-top: 8px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.25) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-top: 10px;
     }
 
-    .hero p {
-      max-width: 560px;
+    .hero-desc {
+      max-width: 500px;
       color: var(--muted);
-      font-size: 1.05rem;
-      margin: 20px auto 40px;
+      font-size: 1rem;
+      margin: 28px auto 40px;
+      line-height: 1.7;
     }
 
     .hero-btns {
@@ -136,218 +157,228 @@
       flex-wrap: wrap;
     }
 
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      padding: 13px 28px;
-      border-radius: 12px;
+    .btn-white {
+      background: white;
+      color: black;
+      padding: 12px 24px;
+      border-radius: 10px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.95rem;
-      transition: background 0.2s, transform 0.15s;
+      font-size: 0.9rem;
+      transition: opacity 0.2s, transform 0.15s;
       display: inline-flex;
       align-items: center;
       gap: 8px;
     }
-    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-white:hover { opacity: 0.88; transform: translateY(-1px); }
 
-    .btn-ghost {
-      background: var(--surface);
-      color: var(--text);
+    .btn-outline {
+      background: transparent;
+      color: var(--muted);
       border: 1px solid var(--border);
-      padding: 13px 28px;
-      border-radius: 12px;
+      padding: 12px 24px;
+      border-radius: 10px;
       text-decoration: none;
       font-weight: 500;
-      font-size: 0.95rem;
-      transition: border-color 0.2s, transform 0.15s;
+      font-size: 0.9rem;
+      transition: color 0.2s, border-color 0.2s, transform 0.15s;
     }
-    .btn-ghost:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .btn-outline:hover { color: white; border-color: rgba(255,255,255,0.2); transform: translateY(-1px); }
 
     /* SECTION */
-    section { padding: 96px 24px; }
+    section { padding: 100px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
 
-    .container { max-width: 1080px; margin: 0 auto; }
-
-    .section-label {
-      font-size: 0.75rem;
+    .section-eyebrow {
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      text-align: center;
     }
 
     .section-title {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
       font-weight: 800;
-      letter-spacing: -0.8px;
+      letter-spacing: -1.2px;
+      text-align: center;
       margin-bottom: 16px;
+      background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .section-sub {
+      text-align: center;
       color: var(--muted);
-      font-size: 1rem;
-      max-width: 540px;
+      font-size: 0.95rem;
+      max-width: 480px;
+      margin: 0 auto 56px;
+      line-height: 1.7;
     }
 
-    /* APP SHOWCASE */
-    .showcase {
+    /* DIVIDER LINE */
+    .line-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* BENTO GRID */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+      margin-top: 0;
+    }
+
+    .bento-card {
       background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      backdrop-filter: blur(10px);
+      transition: border-color 0.3s, background 0.3s;
+      overflow: hidden;
     }
 
-    .showcase-inner {
+    .bento-card:hover {
+      border-color: rgba(167,139,250,0.3);
+      background: rgba(167,139,250,0.04);
+    }
+
+    .bento-card.wide { grid-column: span 2; }
+    .bento-card.tall { grid-row: span 2; }
+
+    .bento-icon {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .bento-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .bento-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .bento-card .en {
+      font-size: 0.75rem;
+      color: var(--muted2);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    .bento-he { direction: rtl; text-align: right; }
+
+    /* PHONE MOCKUP */
+    .phone-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .phone {
+      width: 200px;
+      height: 400px;
+      background: #0a0a0f;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px 16px;
+      box-shadow: 0 0 60px rgba(120,80,255,0.15), 0 32px 64px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .phone::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      width: 60px; height: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 999px;
+    }
+
+    .phone-shield-big { font-size: 2.5rem; filter: drop-shadow(0 0 16px rgba(167,139,250,0.6)); }
+    .phone-app-name { font-size: 1rem; font-weight: 700; }
+    .p-input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.62rem;
+      color: var(--muted);
+      text-align: right;
+      direction: rtl;
+    }
+    .p-btn {
+      width: 100%;
+      background: #6366f1;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+    }
+    .p-result {
+      width: 100%;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.15);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.62rem;
+      color: #4ade80;
+      text-align: center;
+    }
+
+    /* SHOWCASE SECTION */
+    .showcase-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 64px;
       align-items: center;
     }
 
-    .showcase-text .rtl { direction: rtl; text-align: right; }
+    .showcase-text { direction: rtl; text-align: right; }
+    .showcase-text .en { direction: ltr; text-align: left; color: var(--muted); font-size: 0.9rem; margin-top: 16px; }
 
-    .app-icon {
-      width: 72px; height: 72px;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 32px rgba(99,102,241,0.3);
+    .showcase-text h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-
-    .showcase-visual {
-      display: flex;
-      justify-content: center;
-    }
-
-    .phone-mockup {
-      width: 260px;
-      height: 520px;
-      background: var(--bg);
-      border: 2px solid var(--border);
-      border-radius: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
-    }
-
-    .phone-mockup::before {
-      content: '';
-      position: absolute;
-      top: 14px;
-      width: 90px; height: 6px;
-      background: var(--border);
-      border-radius: 999px;
-    }
-
-    .phone-screen {
-      width: 85%;
-      height: 85%;
-      background: linear-gradient(160deg, #13131a 0%, #0d0d14 100%);
-      border-radius: 28px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 20px;
-    }
-
-    .phone-shield {
-      font-size: 3rem;
-      filter: drop-shadow(0 0 20px rgba(99,102,241,0.5));
-    }
-
-    .phone-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .phone-input {
-      width: 100%;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 0.7rem;
-      color: var(--muted);
-      text-align: right;
-      direction: rtl;
-    }
-
-    .phone-btn {
-      width: 100%;
-      background: var(--accent);
-      border-radius: 10px;
-      padding: 10px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #fff;
-      text-align: center;
-    }
-
-    .phone-result {
-      width: 100%;
-      background: rgba(34,197,94,0.1);
-      border: 1px solid rgba(34,197,94,0.2);
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 0.68rem;
-      color: var(--green);
-      text-align: center;
-    }
-
-    /* FEATURES */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 48px;
-    }
-
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .feature-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-
-    .feature-icon {
-      font-size: 1.8rem;
-      margin-bottom: 14px;
-    }
-
-    .feature-card h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .feature-card p {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .feature-he { direction: rtl; text-align: right; }
-    .feature-en { color: var(--muted); font-size: 0.78rem; margin-top: 4px; font-style: italic; }
 
     /* PRICING */
     .pricing-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      max-width: 640px;
-      margin: 48px auto 0;
+      gap: 20px;
+      max-width: 620px;
+      margin: 0 auto;
     }
 
     .pricing-card {
@@ -355,259 +386,314 @@
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 32px 28px;
-      text-align: center;
+      backdrop-filter: blur(10px);
       position: relative;
     }
 
-    .pricing-card.featured {
-      border-color: var(--accent);
-      background: rgba(99,102,241,0.06);
+    .pricing-card.pro {
+      border-color: rgba(167,139,250,0.4);
+      background: rgba(167,139,250,0.05);
     }
 
-    .best-value {
+    .pro-badge {
       position: absolute;
-      top: -12px; left: 50%;
+      top: -11px; left: 50%;
       transform: translateX(-50%);
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.7rem;
+      background: linear-gradient(90deg, #8b5cf6, #6366f1);
+      color: white;
+      font-size: 0.68rem;
       font-weight: 700;
-      padding: 4px 14px;
+      padding: 3px 14px;
       border-radius: 999px;
       white-space: nowrap;
+      letter-spacing: 0.3px;
     }
 
-    .pricing-name {
-      font-size: 0.85rem;
+    .plan-name {
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--muted);
-      margin-bottom: 8px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      margin-bottom: 10px;
     }
 
-    .pricing-price {
-      font-size: 2.4rem;
+    .plan-price {
+      font-size: 2.8rem;
       font-weight: 800;
-      letter-spacing: -1px;
+      letter-spacing: -2px;
       line-height: 1;
     }
 
-    .pricing-period {
+    .plan-period { font-size: 0.82rem; color: var(--muted); margin-bottom: 24px; margin-top: 4px; }
+
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; direction: rtl; text-align: right; }
+
+    .plan-features li {
       font-size: 0.85rem;
       color: var(--muted);
-      margin-bottom: 20px;
-    }
-
-    .pricing-features {
-      list-style: none;
-      text-align: right;
-      direction: rtl;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .pricing-features li {
-      padding: 5px 0;
       display: flex;
       align-items: center;
       gap: 8px;
-      direction: rtl;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
     }
 
-    .pricing-features li::before { content: '✓'; color: var(--green); font-weight: 700; }
+    .plan-features li::before { content: '✓'; color: #4ade80; font-weight: 700; font-size: 0.8rem; }
 
     /* ABOUT */
-    .about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-    .about-inner {
+    .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 64px;
+      gap: 80px;
       align-items: center;
     }
 
-    .about-text { direction: rtl; text-align: right; }
-    .about-en { direction: ltr; text-align: left; color: var(--muted); margin-top: 24px; font-size: 0.95rem; }
+    .about-left { direction: rtl; text-align: right; }
+
+    .about-left h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+      background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.65) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-left p { color: var(--muted); font-size: 0.95rem; line-height: 1.75; }
+    .about-left .en { direction: ltr; text-align: left; margin-top: 16px; }
+
+    .about-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .glow-circle {
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,0.2), transparent 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      filter: drop-shadow(0 0 40px rgba(139,92,246,0.4));
+    }
 
     /* CONTACT */
-    .contact { text-align: center; }
+    .contact-box {
+      max-width: 520px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
 
-    .contact-email {
+    .contact-box h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      margin-bottom: 8px;
+    }
+
+    .contact-box p { color: var(--muted); font-size: 0.9rem; margin-bottom: 28px; }
+
+    .email-link {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 16px 28px;
-      border-radius: 14px;
       color: var(--text);
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 500;
-      margin-top: 32px;
-      transition: border-color 0.2s;
+      border: 1px solid var(--border);
+      padding: 14px 24px;
+      border-radius: 12px;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .contact-email:hover { border-color: var(--accent); }
+    .email-link:hover { border-color: rgba(167,139,250,0.4); background: rgba(167,139,250,0.05); }
 
     /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
-      padding: 32px 48px;
+      padding: 28px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: var(--muted);
-      font-size: 0.85rem;
+      color: var(--muted2);
+      font-size: 0.82rem;
     }
 
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--text); }
+    footer a { color: var(--muted2); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--muted); }
+    footer .links { display: flex; gap: 24px; }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 16px 20px; }
-      .showcase-inner, .about-inner { grid-template-columns: 1fr; gap: 40px; }
-      .features-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .showcase-visual { display: none; }
-      footer { flex-direction: column; gap: 8px; text-align: center; }
+      .nav-links { gap: 16px; }
+      .bento { grid-template-columns: 1fr; }
+      .bento-card.wide { grid-column: span 1; }
+      .showcase-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .phone-wrap { display: none; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 360px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+      .contact-box { padding: 32px 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-    <a href="/" class="logo">Kesher<span>Tech</span></a>
-    <a href="#contact">צרו קשר | Contact</a>
+    <a href="/" class="logo">KesherTech</a>
+    <div class="nav-links">
+      <a href="#magen">מָגֵן</a>
+      <a href="#about">אודות</a>
+      <a href="#contact" class="nav-cta">הורידו | Download</a>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="badge">🇮🇱 Made in Israel</div>
+    <div class="hero-badge">🇮🇱 Made in Israel &nbsp;·&nbsp; <span>App Store</span></div>
     <h1>
-      <span class="he">מגינים על האנשים שאתם אוהבים</span>
-      <span class="en">Protecting the people you love</span>
+      מגינים על האנשים שאתם אוהבים
+      <span class="sub">Protecting the people you love</span>
     </h1>
-    <p>KesherTech בונה כלים פשוטים שעוזרים לכולם להישאר בטוחים בעולם דיגיטלי מסוכן.<br><em style="font-style:normal;color:#606070">Simple tools that help everyone stay safe in a dangerous digital world.</em></p>
+    <p class="hero-desc">
+      KesherTech בונה כלים פשוטים שעוזרים לכולם להישאר בטוחים בעולם דיגיטלי מסוכן.
+      <br><br>
+      <span style="color:rgba(255,255,255,0.25);font-size:0.9em">Simple tools that help everyone stay safe in a dangerous digital world.</span>
+    </p>
     <div class="hero-btns">
-      <a href="https://apps.apple.com" class="btn-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <a href="https://apps.apple.com" class="btn-white">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="black"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         הורידו ב-App Store
       </a>
-      <a href="#magen" class="btn-ghost">קראו עוד | Learn more</a>
+      <a href="#magen" class="btn-outline">קראו עוד ↓</a>
     </div>
   </section>
+
+  <div class="line-divider"></div>
 
   <!-- APP SHOWCASE -->
-  <section class="showcase" id="magen">
-    <div class="container showcase-inner">
+  <section id="magen">
+    <div class="container showcase-grid">
       <div class="showcase-text">
-        <div class="app-icon">🛡️</div>
-        <div class="section-label">המוצר שלנו | Our Product</div>
-        <div class="rtl">
-          <h2 class="section-title">מָגֵן — המגן מפני הונאות</h2>
-          <p style="color:var(--muted);margin-bottom:12px">קיבלתם SMS חשוד? קישור מוזר? מספר לא מוכר?<br>מָגֵן בודק תוך שניות — בעזרת קהילה, בינה מלאכותית ורשימת גורמים מאומתים בישראל.</p>
-          <p style="color:var(--muted)">בלי לחשוף פרטים אישיים. בלי להשאיר עקבות.</p>
+        <div class="section-eyebrow" style="text-align:right">המוצר שלנו</div>
+        <h2>מָגֵן — המגן מפני הונאות</h2>
+        <p style="color:var(--muted);font-size:0.95rem;line-height:1.75">
+          קיבלתם SMS חשוד? קישור מוזר? מספר לא מוכר?<br>
+          מָגֵן בודק תוך שניות — בעזרת קהילה, בינה מלאכותית ורשימת גורמים מאומתים בישראל.<br>
+          בלי לחשוף פרטים אישיים. בלי להשאיר עקבות.
+        </p>
+        <div class="en">
+          Got a suspicious SMS? Magen checks it in seconds — using community reports, AI, and a verified list of trusted Israeli organisations. No personal details exposed.
         </div>
-        <p style="color:var(--muted);font-size:0.88rem;margin-top:16px;font-style:italic">Got a suspicious SMS? Magen checks it in seconds — using community reports, AI, and a verified list of trusted Israeli organisations. No personal details exposed.</p>
       </div>
-      <div class="showcase-visual">
-        <div class="phone-mockup">
-          <div class="phone-screen">
-            <div class="phone-shield">🛡️</div>
-            <div class="phone-title">מָגֵן</div>
-            <div class="phone-input">הדביקו הודעה חשודה…</div>
-            <div class="phone-btn">בדיקה</div>
-            <div class="phone-result">✓ אין דיווחים — היזהרו בכל זאת</div>
-          </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-shield-big">🛡️</div>
+          <div class="phone-app-name">מָגֵן</div>
+          <div class="p-input">הדביקו הודעה חשודה…</div>
+          <div class="p-btn">בדיקה</div>
+          <div class="p-result">✓ גורם מאומת</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
+  <div class="line-divider"></div>
+
+  <!-- FEATURES BENTO -->
   <section id="features">
     <div class="container">
-      <div class="section-label" style="text-align:center">למה מָגֵן | Why Magen</div>
-      <h2 class="section-title" style="text-align:center">פשוט. מהיר. אנונימי לחלוטין.</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🔍</div>
-          <div class="feature-he">
+      <div class="section-eyebrow">למה מָגֵן</div>
+      <h2 class="section-title">פשוט. מהיר. אנונימי לחלוטין.</h2>
+      <p class="section-sub">Simple. Fast. Completely anonymous.</p>
+      <div class="bento">
+        <div class="bento-card wide">
+          <span class="bento-icon">🔍</span>
+          <div class="bento-he">
             <h3>בדיקה מיידית</h3>
-            <p>הודעות, קישורים ומספרי טלפון — תוצאה תוך שניות.</p>
+            <p>הודעות, קישורים ומספרי טלפון — תוצאה תוך שניות, ללא המתנה.</p>
           </div>
-          <div class="feature-en">Instant check of messages, links and phone numbers.</div>
+          <div class="en">Instant check of messages, links and phone numbers — results in seconds.</div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🤝</div>
-          <div class="feature-he">
+        <div class="bento-card">
+          <span class="bento-icon">🔒</span>
+          <div class="bento-he">
+            <h3>אנונימי לחלוטין</h3>
+            <p>לא נבקש שם, מייל או מספר. אף פעם.</p>
+          </div>
+          <div class="en">No name, email, or number. Ever.</div>
+        </div>
+        <div class="bento-card">
+          <span class="bento-icon">🤝</span>
+          <div class="bento-he">
             <h3>כוח הקהילה</h3>
             <p>מבוסס על דיווחים אמיתיים ממשתמשים ברחבי ישראל.</p>
           </div>
-          <div class="feature-en">Powered by real reports from users across Israel.</div>
+          <div class="en">Powered by real reports from users across Israel.</div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <div class="feature-he">
-            <h3>אנונימי לחלוטין</h3>
-            <p>אנחנו לא יודעים מי אתם. לא נבקש שם, מייל או מספר.</p>
-          </div>
-          <div class="feature-en">We never know who you are. No name, email, or number required.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🤖</div>
-          <div class="feature-he">
+        <div class="bento-card">
+          <span class="bento-icon">🤖</span>
+          <div class="bento-he">
             <h3>בינה מלאכותית</h3>
             <p>AI מזהה דפוסי הונאה חדשים גם כשהם לא מדווחים עדיין.</p>
           </div>
-          <div class="feature-en">AI detects new scam patterns even before they're reported.</div>
+          <div class="en">AI detects new scam patterns before they're reported.</div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🇮🇱</div>
-          <div class="feature-he">
+        <div class="bento-card">
+          <span class="bento-icon">🇮🇱</span>
+          <div class="bento-he">
             <h3>מותאם לישראל</h3>
-            <p>רשימת גורמים מאומתים: ביטוח לאומי, מד"א, בנקים ועוד.</p>
+            <p>ביטוח לאומי, מד"א, בנקים — גורמים מאומתים מראש.</p>
           </div>
-          <div class="feature-en">Verified Israeli senders: National Insurance, MADA, banks and more.</div>
+          <div class="en">Pre-verified Israeli senders: National Insurance, MADA, banks.</div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌐</div>
-          <div class="feature-he">
+        <div class="bento-card">
+          <span class="bento-icon">🌐</span>
+          <div class="bento-he">
             <h3>4 שפות</h3>
             <p>עברית, אנגלית, רוסית וערבית — לכל תושבי ישראל.</p>
           </div>
-          <div class="feature-en">Hebrew, English, Russian and Arabic — for all of Israel.</div>
+          <div class="en">Hebrew, English, Russian and Arabic.</div>
         </div>
       </div>
     </div>
   </section>
 
+  <div class="line-divider"></div>
+
   <!-- PRICING -->
-  <section id="pricing" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
-    <div class="container" style="text-align:center">
-      <div class="section-label">תמחור | Pricing</div>
+  <section id="pricing">
+    <div class="container">
+      <div class="section-eyebrow">תמחור</div>
       <h2 class="section-title">התחילו בחינם</h2>
-      <p class="section-sub" style="margin:0 auto">5 בדיקות ביום בחינם. שדרגו לפרמיום להגנה ללא הגבלה.<br><em style="font-style:normal;color:#404050">5 free checks daily. Upgrade for unlimited protection.</em></p>
+      <p class="section-sub">5 בדיקות ביום בחינם. שדרגו לפרמיום להגנה ללא הגבלה.<br><span style="color:rgba(255,255,255,0.2)">5 free daily checks. Upgrade for unlimited protection.</span></p>
       <div class="pricing-grid">
         <div class="pricing-card">
-          <div class="pricing-name">חינמי | Free</div>
-          <div class="pricing-price">₪0</div>
-          <div class="pricing-period">לתמיד | forever</div>
-          <ul class="pricing-features">
+          <div class="plan-name">חינמי | Free</div>
+          <div class="plan-price">₪0</div>
+          <div class="plan-period">לתמיד · forever</div>
+          <ul class="plan-features">
             <li>5 בדיקות ביום</li>
             <li>כל הפיצ'רים הבסיסיים</li>
             <li>דיווח על הונאות</li>
           </ul>
         </div>
-        <div class="pricing-card featured">
-          <div class="best-value">הכי משתלם | Best value</div>
-          <div class="pricing-name">Premium</div>
-          <div class="pricing-price">₪25</div>
-          <div class="pricing-period">לחודש | /mo &nbsp;·&nbsp; ₪190 לשנה | /yr</div>
-          <ul class="pricing-features">
+        <div class="pricing-card pro">
+          <div class="pro-badge">הכי משתלם · Best value</div>
+          <div class="plan-name">Premium</div>
+          <div class="plan-price">₪25</div>
+          <div class="plan-period">לחודש · /mo &nbsp;·&nbsp; ₪190 לשנה</div>
+          <ul class="plan-features">
             <li>בדיקות ללא הגבלה</li>
             <li>ללא פרסומות</li>
             <li>תמיכה בפיתוח מָגֵן</li>
@@ -615,35 +701,38 @@
           </ul>
         </div>
       </div>
-      <a href="https://apps.apple.com" class="btn-primary" style="margin-top:40px;display:inline-flex">
-        הורידו עכשיו — בחינם
-      </a>
+      <div style="text-align:center;margin-top:40px">
+        <a href="https://apps.apple.com" class="btn-white">הורידו עכשיו — בחינם</a>
+      </div>
     </div>
   </section>
+
+  <div class="line-divider"></div>
 
   <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="container about-inner">
-      <div>
-        <div class="section-label">מי אנחנו | About</div>
-        <h2 class="section-title about-text">KesherTech</h2>
-        <p class="about-text" style="color:var(--muted)">אנחנו סטארטאפ ישראלי שמאמין שטכנולוגיה צריכה לשרת את כולם — לא רק את מי שמבין בה. מָגֵן הוא המוצר הראשון שלנו, ולא האחרון.</p>
-        <p class="about-en">We're an Israeli startup that believes technology should work for everyone — not just those who understand it. Magen is our first product, and not our last.</p>
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-left">
+        <div class="section-eyebrow" style="text-align:right">מי אנחנו</div>
+        <h2>KesherTech</h2>
+        <p>אנחנו סטארטאפ ישראלי שמאמין שטכנולוגיה צריכה לשרת את כולם — לא רק את מי שמבין בה. מָגֵן הוא המוצר הראשון שלנו, ולא האחרון.</p>
+        <p class="en">We're an Israeli startup that believes technology should work for everyone — not just those who understand it. Magen is our first product, and not our last.</p>
       </div>
-      <div style="display:flex;justify-content:center;align-items:center">
-        <div style="font-size:6rem;filter:drop-shadow(0 0 40px rgba(99,102,241,0.4))">🛡️</div>
+      <div class="about-right">
+        <div class="glow-circle">🛡️</div>
       </div>
     </div>
   </section>
 
+  <div class="line-divider"></div>
+
   <!-- CONTACT -->
-  <section class="contact" id="contact">
+  <section id="contact">
     <div class="container">
-      <div class="section-label">צרו קשר | Contact</div>
-      <h2 class="section-title">יש שאלה? נשמח לעזור.</h2>
-      <p class="section-sub" style="margin:0 auto;text-align:center">We'd love to hear from you.</p>
-      <div>
-        <a href="mailto:support@kesher-tech.com" class="contact-email">
+      <div class="contact-box">
+        <h2>יש שאלה? 👋</h2>
+        <p>נשמח לעזור. We'd love to hear from you.</p>
+        <a href="mailto:support@kesher-tech.com" class="email-link">
           ✉️ &nbsp; support@kesher-tech.com
         </a>
       </div>
@@ -653,7 +742,7 @@
   <!-- FOOTER -->
   <footer>
     <div>© 2026 KesherTech. כל הזכויות שמורות.</div>
-    <div style="display:flex;gap:24px">
+    <div class="links">
       <a href="https://keshertech.github.io/magen-legal/privacy.html">Privacy</a>
       <a href="https://keshertech.github.io/magen-legal/terms.html">Terms</a>
     </div>
