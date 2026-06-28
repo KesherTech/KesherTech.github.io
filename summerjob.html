@@ -43,6 +43,7 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
   <nav class="nav">
     <div class="wrap">
       <a class="brand" href="index.html"><img src="assets/sun.svg" alt="" />KesherTech</a>
@@ -62,6 +63,7 @@
       </div>
     </div>
   </nav>
+  <div id="main-content" tabindex="-1" style="outline:none"></div>
 
   <header class="hero">
     <div class="wrap reveal">
@@ -265,5 +267,35 @@
   <script src="js/reveal.js" defer></script>
   <script src="js/theme.js" defer></script>
   <script>document.querySelectorAll(".nav-dropdown-trigger").forEach(function(btn){btn.addEventListener("click",function(){var exp=btn.getAttribute("aria-expanded")==="true";btn.setAttribute("aria-expanded",!exp);});document.addEventListener("click",function(e){if(!btn.closest(".nav-dropdown").contains(e.target))btn.setAttribute("aria-expanded","false");});});</script>
+  <div id="cookie-bar" class="cookie-bar" hidden>
+    <div class="wrap">
+      <p>אנו שומרים <strong>העדפות תצוגה בלבד</strong> בדפדפן שלך — ללא עוגיות מעקב. <a href="privacy.html">מדיניות פרטיות &#x2192;</a></p>
+      <button id="cookie-ok">הבנתי</button>
+    </div>
+  </div>
+
+  <div class="a11y-widget" role="region" aria-label="כלי נגישות">
+    <div id="a11y-panel" class="a11y-panel" role="dialog" aria-label="הגדרות נגישות" aria-modal="false">
+      <div class="a11y-panel-title">נגישות</div>
+      <div class="a11y-row">
+        <span>גודל טקסט</span>
+        <div class="a11y-btns">
+          <button class="a11y-btn" id="a11y-fs-down" aria-label="הקטן טקסט">A&#x2212;</button>
+          <button class="a11y-btn" id="a11y-fs-reset" aria-label="איפוס">A</button>
+          <button class="a11y-btn" id="a11y-fs-up" aria-label="הגדל טקסט">A+</button>
+        </div>
+      </div>
+      <div class="a11y-row">
+        <span>ניגודיות גבוהה</span>
+        <button class="a11y-tog" id="a11y-hc" aria-pressed="false" aria-label="הפעל ניגודיות גבוהה"></button>
+      </div>
+    </div>
+    <button class="a11y-trigger" id="a11y-trigger" aria-expanded="false" aria-haspopup="dialog" aria-label="כלי נגישות">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M6 9h12M9 9l1 11M15 9l-1 11M9 14h6"/></svg>
+    </button>
+  </div>
+
+  <script src="js/a11y.js" defer></script>
+
 </body>
 </html>
