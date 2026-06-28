@@ -7,6 +7,11 @@
   <meta name="description" content="KesherTech בונה אפליקציות ישראליות שמגנות ועוזרות לאנשים — מגן נגד הונאות, ועבודת קיץ לנוער." />
   <link rel="icon" href="assets/sun.svg" />
   <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .product { cursor: pointer; }
+    .product-overlay { position: absolute; inset: 0; z-index: 0; border-radius: 28px; }
+    .product .foot a, .product .chips { position: relative; z-index: 1; }
+  </style>
   <script>(function(){try{var t=localStorage.getItem("kt-theme");if(!t){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
 </head>
 <body>
@@ -66,6 +71,7 @@
       <div class="products">
 
         <article class="product magen reveal">
+          <a class="product-overlay" href="magen.html" aria-label="עמוד מגן"></a>
           <div class="mark shield"><img src="assets/shield.svg" alt="" /></div>
           <h3>מגן</h3>
           <p class="lede">המגן מפני הונאות. הדביקו הודעה חשודה וקבלו תשובה מיידית — האם זו הונאה.</p>
@@ -81,6 +87,7 @@
         </article>
 
         <article class="product summerjob reveal">
+          <a class="product-overlay" href="summerjob.html" aria-label="עמוד עבודת קיץ"></a>
           <div class="mark sun"><img src="assets/sun.svg" alt="" /></div>
           <h3>עבודת קיץ</h3>
           <p class="lede">עבודות קיץ לנוער. לוח משרות פשוט שמחבר מעסיקים ובני נוער ישירות — בלי הרשמה.</p>
